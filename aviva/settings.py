@@ -9,25 +9,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-dp(drwrqe_o=f*1uxr3meyv&*ra!kiko-ocv)jv**b@oclku9#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True  # Set to False on production
+DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']  # Add your production domain when deploying
-
-
-# Application definition
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'appointments',
-    'corsheaders',
+ALLOWED_HOSTS = [
+    'drharipriyasaesthetics.onrender.com',
+    '*.onrender.com',
+    'localhost',
+    '127.0.0.1'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Add this line
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -112,18 +105,24 @@ EMAIL_HOST_PASSWORD = 'qchq yppl ljsr pzjr'  # app password, keep this secure
 
 
 # ✅ CORS and CSRF settings (for local dev only, remove for production)
+# CORS and CSRF settings
 CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:5501",  # Live Server
+    "http://127.0.0.1:5501",
+    "https://drharipriyasaesthetics.onrender.com",
 ]
 CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:5501",
+    "https://drharipriyasaesthetics.onrender.com",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
 CSRF_COOKIE_SAMESITE = 'Lax'
 SESSION_COOKIE_SAMESITE = 'Lax'
-CSRF_COOKIE_SECURE = False
-SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = True  # Changed to True for production
+SESSION_COOKIE_SECURE = True  # Changed to True for production
+
+# Enable WhiteNoise compression and caching
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 # Default primary key field type
