@@ -85,13 +85,11 @@ USE_TZ = True
 
 # ✅ Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-
-# These are needed for production or when serving your own static files
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'appointments', 'static'),  # ✅ Add this
+    os.path.join(BASE_DIR, 'appointments', 'static'),
 ]
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # used in production when collecting static files
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 SECRET_KEY = os.environ.get('SECRET_KEY', 'your-default-key-for-development')
 
@@ -127,3 +125,16 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Application definition
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'appointments',
+    'corsheaders',
+]
