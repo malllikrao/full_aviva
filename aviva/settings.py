@@ -6,7 +6,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # SECURITY WARNING: keep the secret key used in production!
-SECRET_KEY = 'django-insecure-dp(drwrqe_o=f*1uxr3meyv&*ra!kiko-ocv)jv**b@oclku9#'
+# Remove this line since it's duplicated
+# SECRET_KEY = 'django-insecure-dp(drwrqe_o=f*1uxr3meyv&*ra!kiko-ocv)jv**b@oclku9#'
+
+# Keep only this one
+SECRET_KEY = os.environ.get('SECRET_KEY', 'your-default-key-for-development')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -138,3 +142,4 @@ INSTALLED_APPS = [
     'appointments',
     'corsheaders',
 ]
+DEBUG = True  # Temporarily set to True to see the error
