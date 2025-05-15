@@ -7,6 +7,30 @@ from .whatsapp_utils import send_whatsapp_text, send_whatsapp_image, send_whatsa
 from django.core.mail import send_mail
 from django.views.decorators.http import require_http_methods
 import json
+# Add these imports at the top if not already present
+from django.shortcuts import render
+
+# Add these view functions
+def index(request):
+    return render(request, 'appointments/index.html')
+
+def plastic_surgery(request):
+    return render(request, 'appointments/plastic-surgery.html')
+
+def skinandhairaesthetics(request):
+    return render(request, 'appointments/skinandhairaesthetics.html')
+
+def smile(request):
+    return render(request, 'appointments/smile.html')
+
+def obesity_clinic(request):
+    return render(request, 'appointments/obesity-clinic.html')
+
+def cosmetic_gynecology(request):
+    return render(request, 'appointments/cosmetic-gynecology.html')
+
+def dermatology(request):
+    return render(request, 'appointments/dermatology.html')
 
 @ensure_csrf_cookie
 def get_csrf_token(request):

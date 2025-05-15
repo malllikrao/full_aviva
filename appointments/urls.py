@@ -3,21 +3,17 @@ from . import views
 from django.shortcuts import redirect
 
 
-
 urlpatterns = [
-
     path('get-csrf-token/', views.get_csrf_token, name='get_csrf_token'),
-     #path('', frontend, name='frontend'),
-    path('', lambda request: redirect('book_appointment')),
+    path('', views.index, name='index'),  # Add this for the main page
+    path('dermatology/', views.dermatology, name='dermatology'),  # Add this for dermatology page
+    path('plastic-surgery/', views.plastic_surgery, name='plastic-surgery'),
+    path('skinandhairaesthetics/', views.skinandhairaesthetics, name='skinandhairaesthetics'),
+    path('smile/', views.smile, name='smile'),
+    path('obesity-clinic/', views.obesity_clinic, name='obesity-clinic'),
+    path('cosmetic-gynecology/', views.cosmetic_gynecology, name='cosmetic-gynecology'),
     path('book/', views.book_appointment, name='book_appointment'),
     path('thank-you/', views.thank_you, name='thank_you'),
 ]
 
-#from django.urls import path
-#from .views import book_appointment, thank_you, frontend
 
-#urlpatterns = [
-    #path('', frontend, name='frontend'),  # main frontend page
-    ##path('book/', book_appointment, name='book_appointment'),
-    #path('thank-you/', thank_you, name='thank_you'),
-#]
