@@ -100,6 +100,7 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # used in production when collecting static files
 
+SECRET_KEY = os.environ.get('SECRET_KEY', 'your-default-key-for-development')
 
 # ✅ Email setup (Gmail SMTP)
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
