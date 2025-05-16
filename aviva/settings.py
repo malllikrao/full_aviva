@@ -13,6 +13,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'your-default-key-for-development')
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# Remove duplicate SECRET_KEY definition
+# SECRET_KEY = os.environ.get('SECRET_KEY', 'your-default-key-for-development')
+
+# Set DEBUG to False for production
 DEBUG = False
 
 ALLOWED_HOSTS = [
