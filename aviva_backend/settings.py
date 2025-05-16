@@ -5,12 +5,17 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production!
-SECRET_KEY = 'django-insecure-dp(drwrqe_o=f*1uxr3meyv&*ra!kiko-ocv)jv**b@oclku9#'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'your-default-key-for-development')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = [
+    'drharipriyasaesthetics.onrender.com',  # Add your specific Render domain
+    '*.onrender.com',
+    'localhost',
+    '127.0.0.1'
+]
 
 # Application definition
 INSTALLED_APPS = [
@@ -26,7 +31,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Add this line for static files
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -91,8 +96,6 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'appointments', 'static'),
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-# Enable WhiteNoise compression and caching
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Email setup (Gmail SMTP)
@@ -106,9 +109,12 @@ EMAIL_HOST_PASSWORD = 'qchq yppl ljsr pzjr'
 # CORS and CSRF settings
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5501",
+    "https://drharipriyasaesthetics.onrender.com"  # Add your Render domain with https
 ]
+
 CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:5501",
+    "https://drharipriyasaesthetics.onrender.com"  # Add your Render domain with https
 ]
 
 CORS_ALLOW_CREDENTIALS = True
