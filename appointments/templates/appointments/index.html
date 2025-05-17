@@ -398,12 +398,13 @@
                     console.error('Appointment form not found!');
                 }
             });
-        </script>
+        </script>   
 
 <div class="appointment-box">
     <h3>Book Your Appointment</h3>
     
 <form id="appointmentForm" action="http://127.0.0.1:8000/book/" method="POST">
+{% csrf_token %}
 <input type="text" placeholder="Full Name" name="name" required>
 <input type="email" placeholder="Email Address" name="email" required>
 <input type="tel" placeholder="Phone Number" name="phone" required>

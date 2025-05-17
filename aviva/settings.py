@@ -5,32 +5,25 @@ import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # SECURITY WARNING: keep the secret key used in production!
-# Remove this line since it's duplicated
-# SECRET_KEY = 'django-insecure-dp(drwrqe_o=f*1uxr3meyv&*ra!kiko-ocv)jv**b@oclku9#'
-
-# Keep only this one
 SECRET_KEY = os.environ.get('SECRET_KEY', 'your-default-key-for-development')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# Remove duplicate SECRET_KEY definition
-# SECRET_KEY = os.environ.get('SECRET_KEY', 'your-default-key-for-development')
+DEBUG = 'RENDER' not in os.environ
 
-# Set DEBUG to False for production
-DEBUG = False
-
+# Configure allowed hosts
 ALLOWED_HOSTS = [
-    'drharipriyasaesthetics.onrender.com',
-    '*.onrender.com',
     'localhost',
-    '127.0.0.1'
+    '127.0.0.1',
+    'drharipriyasaesthetics.onrender.com',
+    '*.onrender.com'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',  # Add this for static files
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  # Add CORS middleware before CommonMiddleware
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -91,25 +84,30 @@ USE_I18N = True
 USE_TZ = True
 
 
-# ✅ Static files (CSS, JavaScript, Images)
 # Static files (CSS, JavaScript, Images)
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'appointments/static')
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
-SECRET_KEY = os.environ.get('SECRET_KEY', 'your-default-key-for-development')
+# Additional static file settings
+WHITENOISE_USE_FINDERS = True
+WHITENOISE_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+WHITENOISE_AUTOREFRESH = True
 
-# ✅ Email setup (Gmail SMTP)
+# Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'gmallik1011@gmail.com'  # your email
-EMAIL_HOST_PASSWORD = 'qchq yppl ljsr pzjr'  # app password, keep this secure
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', 'gmallik1011@gmail.com')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', 'qchq yppl ljsr pzjr')
+
+# WhatsApp settings
+WHATSAPP_API_KEY = os.environ.get('WHATSAPP_API_KEY')
+WHATSAPP_API_SECRET = os.environ.get('WHATSAPP_API_SECRET')
 
 
 # ✅ CORS and CSRF settings (for local dev only, remove for production)
@@ -124,72 +122,20 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 CORS_ALLOW_CREDENTIALS = True
+
+# Cookie settings for cross-site context
 CSRF_COOKIE_SAMESITE = 'Lax'
 SESSION_COOKIE_SAMESITE = 'Lax'
-CSRF_COOKIE_SECURE = True  # Changed to True for production
-SESSION_COOKIE_SECURE = True  # Changed to True for production
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
 
-# Enable WhiteNoise compression and caching
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-
-# Default primary key field type
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-# Application definition
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'appointments',
-    'corsheaders',
-]
-DEBUG = 'RENDER' not in os.environ
-
-ALLOWED_HOSTS = []
-RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-if RENDER_EXTERNAL_HOSTNAME:
-    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
-
-# Database
-DATABASES = {
-    'default': dj_database_url.config(
-        default='sqlite:///db.sqlite3',
-        conn_max_age=600
-    )
+# Additional security headers
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURITY_HEADERS = {
+    'Access-Control-Allow-Credentials': 'true',
+    'Referrer-Policy': 'strict-origin-when-cross-origin'
 }
 
-# Static files
-STATIC_URL = '/static/'
-if not DEBUG:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-# Add whitenoise middleware
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Add this line
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
-
-# CSRF settings
-CSRF_TRUSTED_ORIGINS = ['https://*.onrender.com']
-
-CORS_ALLOW_CREDENTIALS = True
-CSRF_COOKIE_SAMESITE = 'Lax'
-SESSION_COOKIE_SAMESITE = 'Lax'
-CSRF_COOKIE_SECURE = True  # Changed to True for production
-SESSION_COOKIE_SECURE = True  # Changed to True for production
-
 # Enable WhiteNoise compression and caching
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
@@ -209,4 +155,45 @@ INSTALLED_APPS = [
     'appointments',
     'corsheaders',
 ]
-DEBUG = True  # Temporarily set to True to see the error
+# CORS and CSRF settings
+CORS_ALLOWED_ORIGINS = [
+    'http://127.0.0.1:5501',
+    'https://drharipriyasaesthetics.onrender.com',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://127.0.0.1:5501',
+    'https://drharipriyasaesthetics.onrender.com',
+    'https://*.onrender.com',
+]
+
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
+CORS_EXPOSE_HEADERS = ['Content-Type', 'X-CSRFToken']
+CORS_PREFLIGHT_MAX_AGE = 86400  # 24 hours
+
+CSRF_COOKIE_SAMESITE = 'Lax'
+SESSION_COOKIE_SAMESITE = 'Lax'
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
+# Default primary key field type
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
