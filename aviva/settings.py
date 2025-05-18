@@ -19,6 +19,18 @@ ALLOWED_HOSTS = [
     '*.onrender.com'
 ]
 
+# Application definition
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'appointments',
+    'corsheaders',
+]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',  # Add this for static files
@@ -110,18 +122,40 @@ WHATSAPP_API_KEY = os.environ.get('WHATSAPP_API_KEY')
 WHATSAPP_API_SECRET = os.environ.get('WHATSAPP_API_SECRET')
 
 
-# ✅ CORS and CSRF settings (for local dev only, remove for production)
 # CORS and CSRF settings
 CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:5501",
-    "https://drharipriyasaesthetics.onrender.com",
+    'http://127.0.0.1:5501',
+    'https://drharipriyasaesthetics.onrender.com',
 ]
+
 CSRF_TRUSTED_ORIGINS = [
-    "http://127.0.0.1:5501",
-    "https://drharipriyasaesthetics.onrender.com",
+    'http://127.0.0.1:5501',
+    'https://drharipriyasaesthetics.onrender.com',
+    'https://*.onrender.com',
 ]
 
 CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
+CORS_EXPOSE_HEADERS = ['Content-Type', 'X-CSRFToken']
+CORS_PREFLIGHT_MAX_AGE = 86400  # 24 hours
 
 # Cookie settings for cross-site context
 CSRF_COOKIE_SAMESITE = 'Lax'
@@ -136,25 +170,8 @@ SECURITY_HEADERS = {
     'Referrer-Policy': 'strict-origin-when-cross-origin'
 }
 
-# Enable WhiteNoise compression and caching
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-# Application definition
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'appointments',
-    'corsheaders',
-]
 # CORS and CSRF settings
 CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:5501',
