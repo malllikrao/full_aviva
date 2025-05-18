@@ -31,7 +31,7 @@ appointmentForm.addEventListener('submit', function (e) {
     time: document.getElementById('time').value,
     message: document.getElementById('message').value
   };
-
+  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
   fetch('/book/', {
     method: 'POST',
     headers: {
