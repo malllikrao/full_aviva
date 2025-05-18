@@ -180,7 +180,7 @@ CORS_ALLOWED_ORIGINS = [
     'https://*.onrender.com'
 ]
 
-CSRF_TRUSTED_ORIGINS = ['https://drharipriyasaesthetics.onrender.com','https://*.onrender.com']
+CSRF_TRUSTED_ORIGINS = ['https://drharipriyasaesthetics.onrender.com','https://*.onrender.com','http://127.0.0.1:8000']
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 
@@ -217,5 +217,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 DEBUG = False
-ALLOWED_HOSTS = ['localhost', '127.0.0.1',]
-ALLOWED_HOSTS = ['drharipriyasaesthetics.onrender.com', '.onrender.com']
+#ALLOWED_HOSTS = ['localhost', '127.0.0.1',]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1','drharipriyasaesthetics.onrender.com', '.onrender.com']
