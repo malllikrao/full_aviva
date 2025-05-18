@@ -219,29 +219,29 @@
         });
     </script>
 
-    <section class="team-section" id="team-section">
-        <h2>👩‍⚕️ Our Expert Medical Team</h2>
+    <section class="team-section" id="team-section"> 
+        <h2>👩‍⚕️ Our Expert Medical Team</h2> 
         <p>Led by Dr. Haripriya, our clinic brings specialists in dermatology, hair transplantation, and surgery together.</p>
-
-        <div class="team-cards">
-            <div class="team-member">
-                <img src="{% static 'images/doc1.jpg' %}" alt="Dr. Haripriya">
-                <h4>Dr. Haripriya</h4>
-                <p>Lead Aesthetician & Founder</p>
-            </div>
-
-            <div class="team-member">
-                <img src="{% static 'images/doc2.jpg' %}" alt="Dr. Rahul Sharma">
-                <h4>Dr. Sandeep</h4>
-                <p>Consultant.Plastic Surgeon</p>
-            </div>
-
-            <div class="team-member">
-                <img src="{% static 'images/doc3.jpg' %}" alt="Dr. Priya Sharma">
-                <h4>Dr.Samba Raju</h4>
-                <p>Consultant. Dermatologist</p>
-            </div>
-        </div>
+    
+        <div class="team-cards"> 
+            <div class="team-member"> 
+                <img src="{% static 'images/doc1.JPG' %}" alt="Dr. Haripriya"> 
+                <h4>Dr. Haripriya</h4> 
+                <p>Lead Aesthetician & Founder</p> 
+            </div> 
+    
+            <div class="team-member"> 
+                <img src="{% static 'images/doc2.JPG' %}" alt="Dr. Sandeep"> 
+                <h4>Dr. Sandeep</h4> 
+                <p>Consultant.Plastic Surgeon</p> 
+            </div> 
+    
+            <div class="team-member"> 
+                <img src="{% static 'images/doc3.JPG' %}" alt="Dr. Samba Raju"> 
+                <h4>Dr.Samba Raju</h4> 
+                <p>Consultant. Dermatologist</p> 
+            </div> 
+        </div> 
     </section>
 
     <section id="testimonials" class="testimonials-section">
@@ -300,127 +300,118 @@
         }, 5000);
     </script>
 
-    <section id="contact" class="contact-section">
-        <div class="contact-box">
-            <h3>Get In Touch</h3>
-            <p><strong>Phone:</strong> +91 8125251010</p>
-            <p><small>9am - 6pm</small></p>
-            <p><strong>Email:</strong> info@aviva-aesthetics.com</p>
-            <p><small>We’ll respond within 4-5 hours</small></p>
-            <p><strong>Location:</strong> Court Chowrata, Biba showroom, Karimnagar</p>
-            <p><small>Convenient parking available</small></p>
-            <p>
-                <p>
-                    <a href="https://instagram.com/dr_haripriyaavivaaesthetics" target="_blank">
-                        <img src="{% static 'images/icons8-instagram-48.png' %}" alt="Instagram" style="width:24px; margin-right:8px;">
-                    </a>
-                    <a href="https://facebook.com/YOUR_PAGE" target="_blank">
-                        <img src="{% static 'images/icons8-facebook-48.png' %}" alt="Facebook" style="width:24px;">
-                    </a>
-                </p>
-            <p><strong>Monday - Friday:</strong> 9:00 AM - 7:00 PM</p>
-            <p><strong>Saturday:</strong> 10:00 AM - 4:00 PM</p>
-            <p><strong>Sunday:</strong> Closed</p>
-        </div>
+<section id="contact" class="contact-section">
+    <div class="contact-box">
+        <h3>Get In Touch</h3>
+        <p><strong>Phone:</strong> +91 8125251010</p>
+        <p><small>9am - 6pm</small></p>
+        <p><strong>Email:</strong> info@aviva-aesthetics.com</p>
+        <p><small>We’ll respond within 4-5 hours</small></p>
+        <p><strong>Location:</strong> Court Chowrata, Biba showroom, Karimnagar</p>
+        <p><small>Convenient parking available</small></p>
+        <p>
+            <a href="https://instagram.com/dr_haripriyaavivaaesthetics" target="_blank">
+                <img src="assets/images/icons8-instagram-48.png" alt="Instagram" style="width:24px; margin-right:8px;">
+            </a>
+            <a href="https://facebook.com/YOUR_PAGE" target="_blank">
+                <img src="assets/images/icons8-facebook-48.png" alt="Facebook" style="width:24px;">
+            </a>
+        </p>
+        <p><strong>Monday - Friday:</strong> 9:00 AM - 7:00 PM</p>
+        <p><strong>Saturday:</strong> 10:00 AM - 4:00 PM</p>
+        <p><strong>Sunday:</strong> Closed</p>
+    </div>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const appointmentForm = document.getElementById('appointmentForm');
-                console.log('Appointment form selected:', appointmentForm); // Debug log
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const appointmentForm = document.getElementById('appointmentForm');
+            console.log('Appointment form selected:', appointmentForm); // Debug log
 
-                // Set CSRF cookie by hitting Django once (important for separate front & backend)
-                fetch("{% url 'get_csrf_token' %}", {
-                    credentials: "include"
-                })
-                    .then(() => console.log("CSRF cookie set"))
-                    .catch(err => console.error("Failed to set CSRF cookie:", err));
+            // Set CSRF cookie by hitting Django once (important for separate front & backend)
+            fetch("http://127.0.0.1:8000/get-csrf-token/", {
+                credentials: "include"
+            })
+                .then(() => console.log("CSRF cookie set"))
+                .catch(err => console.error("Failed to set CSRF cookie:", err));
 
-                if (appointmentForm) {
-                    appointmentForm.addEventListener('submit', function (event) {
-                        console.log('Form submitted!');
-                        event.preventDefault();
+            if (appointmentForm) {
+                appointmentForm.addEventListener('submit', function (event) {
+                    console.log('Form submitted!');
+                    event.preventDefault();
 
-                        const formData = {
-                            name: this.querySelector('input[name="name"]').value,
-                            email: this.querySelector('input[name="email"]').value,
-                            phone: this.querySelector('input[name="phone"]').value,
-                            service: this.querySelector('select[name="service"]').value,
-                            date: this.querySelector('input[name="date"]').value,
-                            time: this.querySelector('input[name="time"]').value,
-                            message: this.querySelector('textarea[name="message"]').value
-                        };
-                        console.log('Form data:', formData);
+                    const formData = {
+                        name: this.querySelector('input[name="name"]').value,
+                        email: this.querySelector('input[name="email"]').value,
+                        phone: this.querySelector('input[name="phone"]').value,
+                        service: this.querySelector('select[name="service"]').value,
+                        date: this.querySelector('input[name="date"]').value,
+                        time: this.querySelector('input[name="time"]').value,
+                        message: this.querySelector('textarea[name="message"]').value
+                    };
+                    console.log('Form data:', formData);
 
-                        // Change this line:
-                        // Change this:
-                        // Change this:
-                        // Change this:
-                        fetch('/book/', {
-                        
-                        // To this:
-                        fetch('{% url "book_appointment" %}', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-CSRFToken': getCookie('csrftoken')
-                            },
-                            credentials: 'include',
-                            body: JSON.stringify(formData)
+                    fetch('http://127.0.0.1:8000/book/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': getCookie('csrftoken') // CSRF token from cookie
+                        },
+                        credentials: 'include', // Required for CSRF cookies
+                        body: JSON.stringify(formData)
+                    })
+                        .then(response => {
+                            console.log('Response received:', response);
+                            if (!response.ok) {
+                                return response.json().then(data => {
+                                    throw new Error(data.error || 'Something went wrong!');
+                                });
+                            }
+                            return response.json();
                         })
-                            .then(response => {
-                                console.log('Response received:', response);
-                                if (!response.ok) {
-                                    return response.json().then(data => {
-                                        throw new Error(data.error || 'Something went wrong!');
-                                    });
-                                }
-                                return response.json();
-                            })
-                            .then(data => {
-                                console.log('Success data:', data);
-                                alert('Appointment request sent successfully!');
-                                appointmentForm.reset();
-                            })
-                            .catch(error => {
-                                console.error('Error:', error);
-                                alert('Failed to send appointment request. Please try again.');
-                            });
-                    });
+                        .then(data => {
+                            console.log('Success data:', data);
+                            alert('Appointment request sent successfully!');
+                            appointmentForm.reset();
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert('Failed to send appointment request. Please try again.');
+                        });
+                });
 
-                    function getCookie(name) {
-                        let value = null;
-                        if (document.cookie && document.cookie !== '') {
-                            const cookies = document.cookie.split(';');
-                            for (let cookie of cookies) {
-                                cookie = cookie.trim();
-                                if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                                    value = decodeURIComponent(cookie.substring(name.length + 1));
-                                    break;
-                                }
+                function getCookie(name) {
+                    let cookieValue = null;
+                    if (document.cookie && document.cookie !== '') {
+                        const cookies = document.cookie.split(';');
+                        for (let i = 0; i < cookies.length; i++) {
+                            let cookie = cookies[i].trimStart();
+                            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                break;
                             }
                         }
-                        return value;
                     }
-                } else {
-                    console.error('Appointment form not found!');
+                    return cookieValue;
                 }
-            });
-        </script>   
+            } else {
+                console.error('Appointment form not found!');
+            }
+        });
+    </script>
 
-<div class="appointment-box">
-    <h3>Book Your Appointment</h3>
-    
+    <div class="appointment-box">
+        <h3>Book Your Appointment</h3>
+        
 <form id="appointmentForm" action="http://127.0.0.1:8000/book/" method="POST">
-{% csrf_token %}
 <input type="text" placeholder="Full Name" name="name" required>
 <input type="email" placeholder="Email Address" name="email" required>
 <input type="tel" placeholder="Phone Number" name="phone" required>
 <select name="service" required>
-<option value="">Select a service</option>
-<option>Skin Consultation</option>
-<option>Laser Treatment</option>
-<option>Hair Therapy</option>
-<option>Dental Services</option>
+  <option value="">Select a service</option>
+  <option>Skin Consultation</option>
+  <option>Laser Treatment</option>
+  <option>Hair Therapy</option>
+  <option>Dental Services</option>
 </select>
 <input type="date" name="date" required>
 <input type="time" name="time" required>
@@ -452,10 +443,12 @@
   <div class="map-container">
     <h2 class="map-heading">Find Us on the Map</h2>
     <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3793.070379339956!2d79.124735!3d18.4437216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bccd9d22ce0a7d9%3A0x20f8b528ba87129a!2sDr%20Haripriya%20Aviva%20Aesthetics!5e0!3m2!1sen!2sin!4v1714716557682!5m2!1sen!2sin"
-      allowfullscreen=""
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade">
+        width="100%"
+        height="450"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3793.070379339956!2d79.124735!3d18.4437216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bccd9d22ce0a7d9%3A0x20f8b528ba87129a!2sDr%20Haripriya%20Aviva%20Aesthetics!5e0!3m2!1sen!2sin!4v1714716557682!5m2!1sen!2sin"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
     </iframe>
     <p class="map-link">
       <a href="https://goo.gl/maps/vkN8GExLtqP2" target="_blank">Open in Google Maps</a>
