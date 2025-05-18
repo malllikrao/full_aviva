@@ -219,29 +219,29 @@
         });
     </script>
 
-    <section class="team-section" id="team-section">
-        <h2>👩‍⚕️ Our Expert Medical Team</h2>
+    <section class="team-section" id="team-section"> 
+        <h2>👩‍⚕️ Our Expert Medical Team</h2> 
         <p>Led by Dr. Haripriya, our clinic brings specialists in dermatology, hair transplantation, and surgery together.</p>
-
-        <div class="team-cards">
-            <div class="team-member">
-                <img src="{% static 'images/doc1.jpg' %}" alt="Dr. Haripriya">
-                <h4>Dr. Haripriya</h4>
-                <p>Lead Aesthetician & Founder</p>
-            </div>
-
-            <div class="team-member">
-                <img src="{% static 'images/doc2.jpg' %}" alt="Dr. Rahul Sharma">
-                <h4>Dr. Sandeep</h4>
-                <p>Consultant.Plastic Surgeon</p>
-            </div>
-
-            <div class="team-member">
-                <img src="{% static 'images/doc3.jpg' %}" alt="Dr. Priya Sharma">
-                <h4>Dr.Samba Raju</h4>
-                <p>Consultant. Dermatologist</p>
-            </div>
-        </div>
+    
+        <div class="team-cards"> 
+            <div class="team-member"> 
+                <img src="{% static 'images/doc1.JPG' %}" alt="Dr. Haripriya"> 
+                <h4>Dr. Haripriya</h4> 
+                <p>Lead Aesthetician & Founder</p> 
+            </div> 
+    
+            <div class="team-member"> 
+                <img src="{% static 'images/doc2.JPG' %}" alt="Dr. Sandeep"> 
+                <h4>Dr. Sandeep</h4> 
+                <p>Consultant.Plastic Surgeon</p> 
+            </div> 
+    
+            <div class="team-member"> 
+                <img src="{% static 'images/doc3.JPG' %}" alt="Dr. Samba Raju"> 
+                <h4>Dr.Samba Raju</h4> 
+                <p>Consultant. Dermatologist</p> 
+            </div> 
+        </div> 
     </section>
 
     <section id="testimonials" class="testimonials-section">
@@ -317,7 +317,7 @@
                     <a href="https://facebook.com/YOUR_PAGE" target="_blank">
                         <img src="{% static 'images/icons8-facebook-48.png' %}" alt="Facebook" style="width:24px;">
                     </a>
-                </p>
+                </p> <!-- Remove this extra closing p tag -->
             <p><strong>Monday - Friday:</strong> 9:00 AM - 7:00 PM</p>
             <p><strong>Saturday:</strong> 10:00 AM - 4:00 PM</p>
             <p><strong>Sunday:</strong> Closed</p>
@@ -366,7 +366,7 @@
                             },
                             credentials: 'include',
                             body: JSON.stringify(formData)
-                        })
+                        }) // Remove extra comma and parenthesis
                             .then(response => {
                                 console.log('Response received:', response);
                                 if (!response.ok) {
@@ -383,7 +383,7 @@
                             })
                             .catch(error => {
                                 console.error('Error:', error);
-                                alert('Failed to send appointment request. Please try again.');
+                                alert(error.message || 'Failed to send appointment request. Please try again.');
                             });
                     });
 
@@ -410,23 +410,23 @@
 <div class="appointment-box">
     <h3>Book Your Appointment</h3>
     
-<form id="appointmentForm" action="http://127.0.0.1:8000/book/" method="POST">
-{% csrf_token %}
-<input type="text" placeholder="Full Name" name="name" required>
-<input type="email" placeholder="Email Address" name="email" required>
-<input type="tel" placeholder="Phone Number" name="phone" required>
-<select name="service" required>
-<option value="">Select a service</option>
-<option>Skin Consultation</option>
-<option>Laser Treatment</option>
-<option>Hair Therapy</option>
-<option>Dental Services</option>
-</select>
-<input type="date" name="date" required>
-<input type="time" name="time" required>
-<textarea rows="4" placeholder="Please share any specific concerns or questions you have" name="message"></textarea>
-<button type="submit">Request Appointment</button>
-</form>
+<style>
+.dropdown-footer {
+    position: relative;
+}
+.dropdown-content-footer {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 220px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdown-footer:hover .dropdown-content-footer {
+    display: block;
+}
+</style>
+
 </div>
 
 </section>
@@ -452,10 +452,12 @@
   <div class="map-container">
     <h2 class="map-heading">Find Us on the Map</h2>
     <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3793.070379339956!2d79.124735!3d18.4437216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bccd9d22ce0a7d9%3A0x20f8b528ba87129a!2sDr%20Haripriya%20Aviva%20Aesthetics!5e0!3m2!1sen!2sin!4v1714716557682!5m2!1sen!2sin"
-      allowfullscreen=""
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade">
+        width="100%"
+        height="450"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3793.070379339956!2d79.124735!3d18.4437216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bccd9d22ce0a7d9%3A0x20f8b528ba87129a!2sDr%20Haripriya%20Aviva%20Aesthetics!5e0!3m2!1sen!2sin!4v1714716557682!5m2!1sen!2sin"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
     </iframe>
     <p class="map-link">
       <a href="https://goo.gl/maps/vkN8GExLtqP2" target="_blank">Open in Google Maps</a>
