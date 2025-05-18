@@ -13,9 +13,10 @@ DEBUG = 'RENDER' not in os.environ
 
 # Configure allowed hosts
 ALLOWED_HOSTS = [
+    'drharipriyasaesthetics.onrender.com',
     'localhost',
     '127.0.0.1',
-    'drharipriyasaesthetics.onrender.com',
+    #'drharipriyasaesthetics.onrender.com',
     '.onrender.com'  # This will match any subdomain of onrender.com
 ]
 
