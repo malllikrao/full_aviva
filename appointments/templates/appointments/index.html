@@ -353,11 +353,13 @@
 
                         // Change this line:
                         // Change this:
-                        fetch('http://127.0.0.1:8000/book/', {
+                        // Change this:
+                        // Change this:
+                        fetch('/book/', {
                         
                         // To this:
                         fetch('/book/', {
-                            method: 'POST',
+                        method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
                                 'X-CSRFToken': getCookie('csrftoken') // CSRF token from cookie
@@ -538,6 +540,6 @@ document.getElementById('home-link').addEventListener('click', function(e) {
   <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp" />
 </a>
 
-<script src="assets/js/before-after-slider.js"></script>
+<script src="{% static 'js/before-after-slider.js' %}"></script>
 </body>
 </html>
