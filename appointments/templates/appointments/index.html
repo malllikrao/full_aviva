@@ -32,7 +32,7 @@
 
     <header>
         <div class="nav-container">
-            <img src="{% static 'images/logo.png' %}" alt="Aviva Aesthetics Logo" class="logo-img" />
+            <img src="{% static 'images/logo.PNG' %}" alt="Aviva Aesthetics Logo" class="logo-img" />
             <nav>
                 <ul class="nav-links">
                     <li><a href="#about">About</a></li>
@@ -324,7 +324,7 @@
         </div>
 
         <script>
-            document.addEventListener('DOMContentLoaded', function () {
+            document.addEventListener('DOMContentLoaded', function() {
                 const appointmentForm = document.getElementById('appointmentForm');
                 console.log('Appointment form selected:', appointmentForm); // Debug log
 
@@ -358,13 +358,13 @@
                         fetch('/book/', {
                         
                         // To this:
-                        fetch('/book/', {
-                        method: 'POST',
+                        fetch('{% url "book_appointment" %}', {
+                            method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
-                                'X-CSRFToken': getCookie('csrftoken') // CSRF token from cookie
+                                'X-CSRFToken': getCookie('csrftoken')
                             },
-                            credentials: 'include', // Required for CSRF cookies
+                            credentials: 'include',
                             body: JSON.stringify(formData)
                         })
                             .then(response => {
@@ -388,18 +388,18 @@
                     });
 
                     function getCookie(name) {
-                        let cookieValue = null;
+                        let value = null;
                         if (document.cookie && document.cookie !== '') {
                             const cookies = document.cookie.split(';');
-                            for (let i = 0; i < cookies.length; i++) {
-                                let cookie = cookies[i].trimStart();
+                            for (let cookie of cookies) {
+                                cookie = cookie.trim();
                                 if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                    value = decodeURIComponent(cookie.substring(name.length + 1));
                                     break;
                                 }
                             }
                         }
-                        return cookieValue;
+                        return value;
                     }
                 } else {
                     console.error('Appointment form not found!');
