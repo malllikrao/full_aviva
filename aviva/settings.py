@@ -16,7 +16,7 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     'drharipriyasaesthetics.onrender.com',
-    '*.onrender.com'
+    '.onrender.com'  # This will match any subdomain of onrender.com
 ]
 
 # Application definition
@@ -97,7 +97,7 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'appointments/static')
@@ -212,3 +212,7 @@ SESSION_COOKIE_SECURE = True
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+DEBUG = True
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
