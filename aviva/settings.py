@@ -178,11 +178,9 @@ CORS_ALLOWED_ORIGINS = [
     'https://drharipriyasaesthetics.onrender.com',
 ]
 
-CSRF_TRUSTED_ORIGINS = [
-    'http://127.0.0.1:5501',
-    'https://drharipriyasaesthetics.onrender.com',
-    'https://*.onrender.com',
-]
+CSRF_TRUSTED_ORIGINS = ['https://drharipriyasaesthetics.onrender.com']
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
 
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_METHODS = [
